@@ -120,5 +120,14 @@ Es ist zudem ein hoher Aufwand, der viel Zeit zur Implementierung in Anspruch ni
 Darüber hinaus erhält man natürlich all die Vor- und Nachteile, die DDD und Microservices allein mit sich bringen.
 
 # Ports and Adapter für Cloud-Landschaften
+Wir haben uns bis jetzt Ports and Adapters für einzelne Anwendungen angesehen.
+Das Muster lässt sich auch auf größere Cloud-Umgebungen übertragen.
 
-# Verhältnis zu anderen Mustern
+Nehmen wir an, wir haben Landschaft aus Microservices.
+Alle halten ihren eigenen State und kommunizieren größtenteils untereinander.
+Einige Services werden mit externen Systemen interagieren wollen.
+Beispielsweise wird eine Web-API angesprochen oder E-Mails an verschiedene Server verschickt.
+
+Ähnlich wie bei Ports and Adapters lassen sich die Microservices in den inneren Perimeter und den äußeren Gateways aufteilen.
+Und genau wie bei Ports and Adapters lassen sich zwischen dem Perimeter und den Gateways Schnittstellen definieren, um für einen Testfall Mocks bereitstellen zu können.
+Statt Java-Interfaces sind diese Schnittstellen beispielsweise mit Swagger definiert, sodass sich Mocks relativ leicht erstellen lassen.
