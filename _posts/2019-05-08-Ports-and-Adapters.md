@@ -111,6 +111,14 @@ In diesem Falle ändert sich die Implementierung des Shipping Adapters im Contex
 Statt das Interface des Shipping Contexts direkt anzusprechen, muss der Adapter nun einen Web-Client implementieren.
 Dabei ist natürlich zu beachten, dass Fehlerfälle, die bei verteilten Systemen typischerweise auftreten, auch in der Core Domain von Billing behandelt werden müssen (was jedoch keine Schwäche von Ports and Adapters, sondern Microservices ist).
 
+Der Vorteil dieses Vorgehens ist es, dass der Billing Context nun keine direkt Abhängigkeit an den Shipping-Service hat und dadurch leicht zu testen wird.
+Ebenso können etwaige Änderungen am Interface des Shipping-Contexts durch den Adapter im Billing-Context abgefangen werden, sodass sich die Core Domain von Billing nicht ändern muss.
+
+Der Nachteil ist, dass dieses Vorgehen weitere Komplexität in den Code bringt, die ins Verhältnis zum Nutzen betrachtet werden müssen.
+Es ist zudem ein hoher Aufwand, der viel Zeit zur Implementierung in Anspruch nimmt.
+
+Darüber hinaus erhält man natürlich all die Vor- und Nachteile, die DDD und Microservices allein mit sich bringen.
+
 # Ports and Adapter für Cloud-Landschaften
 
 # Verhältnis zu anderen Mustern
