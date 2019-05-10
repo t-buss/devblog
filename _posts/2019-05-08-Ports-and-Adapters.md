@@ -98,9 +98,18 @@ Zusammengesetzt entsteht eine Context-Map, ein Graph, indem die Knoten Bounded C
 Jeder Bounded Context kann eigenständig mit Ports and Adapters implementiert werden.
 Damit erhält jeder Context eine Core Domain und kann selbst definieren, wie Abläufe funktionieren und 
 Begriffe zu verstehen sind.
+Die folgende Abbildung veranschaulicht diese Beschreibung:
 
 ![Mehrere Bounded Contexts, jeder in sich mit Ports and Adapters](/assets/images/posts/ports-and-adapters/multiple_contexts.png)
 Abbildung 2: Mehrere Bounded Contexts, jeder in sich mit Ports and Adapters
+
+Jeder Context kann einen Adapter erstellen, über er mit einem anderen Context kommunizieren kann.
+Dadurch wird verhindert, dass die Begriffe und Konzepte des einen Context in den anderen eindringen (in DDD auch Anti Corruption Layer genannt).
+
+Nehmen wir an, die beiden Contexts aus Abbildung 2 liegen innerhalb eines Monolithen und sollen nun zu einzelnen Microservices migriert werden.
+In diesem Falle ändert sich die Implementierung des Shipping Adapters im Context Billing.
+Statt das Interface des Shipping Contexts direkt anzusprechen, muss der Adapter nun einen Web-Client implementieren.
+Dabei ist natürlich zu beachten, dass Fehlerfälle, die bei verteilten Systemen typischerweise auftreten, auch in der Core Domain von Billing behandelt werden müssen (was jedoch keine Schwäche von Ports and Adapters, sondern Microservices ist).
 
 # Ports and Adapter für Cloud-Landschaften
 
